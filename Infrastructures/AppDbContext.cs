@@ -13,11 +13,13 @@ namespace Infrastructures
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
-
-
+            ChangeTracker.LazyLoadingEnabled= true ;
         }
+
         public DbSet<User> User{ get; set; }
         public DbSet<Role> Role { get; set; }
+        public DbSet<Person> Person { get; set; }
+        public DbSet<FamilyTree> FamilyTree { get; set; }
         public DbSet<GroupChatEntity> GroupChat { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

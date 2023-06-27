@@ -16,5 +16,7 @@ namespace Domain.Entities
         public int RoleId { get; set; } 
         public string? PhoneNumber { get; set; }
         public Role Role { get; set; }
+
+        public FamilyGroup FamilyGroup { get; set; }
     }
 }
