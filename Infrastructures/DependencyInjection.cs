@@ -20,6 +20,7 @@ namespace Infrastructures
             services.AddScoped<ICurrentTime,CurrentTime>();
             services.AddScoped<IUnitOfWork, UnitOfWork>(); 
             services.AddScoped<IUserRepository,UserRepository>();
+            services.AddScoped<IGroupRepository, GroupRepository>();
             services.AddDbContext<AppDbContext>(option => option.UseSqlServer(databaseConnection).EnableSensitiveDataLogging());
             return services;
         }

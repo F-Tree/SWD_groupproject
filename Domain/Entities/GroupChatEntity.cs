@@ -8,6 +8,8 @@ namespace Domain.Entities
 {
     public class GroupChatEntity : BaseEntity
     {
-
+        public string GroupName { get; set; }
+        public string GroupDescription { get; set; }
+        public ICollection<User> Users { get; set; }
     }
 }

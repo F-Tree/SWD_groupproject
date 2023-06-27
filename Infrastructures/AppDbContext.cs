@@ -18,6 +18,7 @@ namespace Infrastructures
         }
         public DbSet<User> User{ get; set; }
         public DbSet<Role> Role { get; set; }
+        public DbSet<GroupChatEntity> GroupChat { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

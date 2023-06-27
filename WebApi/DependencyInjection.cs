@@ -10,6 +10,7 @@ namespace WebApi
         {
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IClaimService, ClaimService>();
+            services.AddScoped<IGroupService, GroupService>();
             services.AddHttpContextAccessor();
             return services;
         }
