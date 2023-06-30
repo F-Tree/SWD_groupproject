@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public  class User:BaseEntity
+    public class User:BaseEntity
     {
         [EmailAddress]
         public string Email { get; set; } = null!;

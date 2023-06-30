@@ -1,5 +1,7 @@
 ﻿using Application.Interface;
+using Application.ViewModel.UserViewModel;
 using Microsoft.AspNetCore.Mvc;
+using WebApi.Services;
 
 namespace WebApi.Controllers
 {
@@ -7,11 +9,13 @@ namespace WebApi.Controllers
     {
         private readonly IUserService _userService;
         private readonly IClaimService _claimService;
+
         public UserController(IUserService userService, IClaimService claimService)
         {
             _userService = userService;
             _claimService = claimService;
         }
+
         [HttpPost]
         public async Task<IActionResult> RegisterAsync(string email,string password)
         {
@@ -22,6 +26,7 @@ namespace WebApi.Controllers
             }
             return Ok();
         }
+
         [HttpPost]
         public async Task<IActionResult> LoginAsync(string email,string password)
         {
@@ -32,6 +37,17 @@ namespace WebApi.Controllers
             }
             return Ok(token);
         }
-       
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateUser(UpdateDTO updateObject)
+        {
+            if (_claimService.GetCurrentUserId.Equals(updateObject.UserId))
+            {
+                var result = await _userService.UpdateUserInformation(updateObject);
+                if (result) return NoContent();
+                else return BadRequest("Something went wrong");
+            }
+            else return BadRequest("Can not update different account");
+        }
     }
 }

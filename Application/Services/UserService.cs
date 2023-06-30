@@ -3,7 +3,10 @@ using Application.Interface;
 using Application.InterfaceRepository;
 using Application.Util;
 using Application.ViewModel;
+using Application.ViewModel.UserViewModel;
+using AutoMapper;
 using Domain.Entities;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -17,14 +20,17 @@ namespace Application.Services
     {
         private readonly IUserRepository _userRepository;
         private readonly IUnitOfWork _unitOfWork;
-    private readonly IConfiguration _configuration;
+        private readonly IConfiguration _configuration;
         private readonly ICurrentTime _currentTime;
-        public UserService(IUserRepository userRepository, IUnitOfWork unitOfWork, ICurrentTime currentTime, IConfiguration configuration)
+        private readonly IMapper _mapper;
+
+        public UserService(IUserRepository userRepository, IUnitOfWork unitOfWork, ICurrentTime currentTime, IConfiguration configuration, IMapper mapper)
         {
             _userRepository = userRepository;
             _unitOfWork = unitOfWork;
             _currentTime = currentTime;
             _configuration = configuration;
+            _mapper = mapper;
         }
 
         public async Task<List<User>> GetAllUser()
@@ -75,7 +81,21 @@ namespace Application.Services
             return await _unitOfWork.SaveChangeAsync() > 0;
 
         }
-       
+
+        public async Task<bool> UpdateUserInformation(UpdateDTO updateUser)
+        {
+            if (updateUser != null)
+            {
+
+                User user = (await _unitOfWork.UserRepository.GetByIdAsync(updateUser.UserId))!;
+                _ = _mapper.Map(updateUser, user, typeof(UpdateDTO), typeof(User));
+
+                _unitOfWork.UserRepository.Update(user);
+                if (await _unitOfWork.SaveChangeAsync() > 0) return true;
+                else return false;
+            }
+            throw new Exception("User can not be null");
+        }
     }
 }
 

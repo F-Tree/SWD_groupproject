@@ -2,6 +2,8 @@
 using Application.Interface;
 using Application.InterfaceRepository;
 using Application.Services;
+using AutoMapper;
+using Infrastructures.Mapper;
 using Infrastructures.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,6 +24,7 @@ namespace Infrastructures
             services.AddScoped<IUserRepository,UserRepository>();
             services.AddScoped<IGroupRepository, GroupRepository>();
             services.AddDbContext<AppDbContext>(option => option.UseSqlServer(databaseConnection).EnableSensitiveDataLogging());
+            services.AddAutoMapper(typeof(MapperConfigurationProfile).Assembly);
             return services;
         }
     }
