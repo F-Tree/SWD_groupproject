@@ -14,6 +14,7 @@ namespace WebApi
         {
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IClaimService, ClaimService>();
+            services.AddScoped<IGroupService, GroupService>();
             services.AddHttpContextAccessor();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                .AddJwtBearer(options =>
