@@ -20,7 +20,7 @@ namespace Domain.Entities
         public string? Mother { get; set; }
         public string? Spouse { get; set; }
         public string? Children { get; set; }
-
+        public Guid TreeId { get; set; }
         public FamilyTree FamilyTree { get; set; }
     }
 }

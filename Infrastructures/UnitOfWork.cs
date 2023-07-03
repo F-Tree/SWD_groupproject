@@ -13,6 +13,7 @@ namespace Infrastructures
         private readonly AppDbContext _dbContext;
         private readonly IUserRepository _userRepository;
         private readonly IGroupRepository _groupRepository;
+        private readonly IFamilyTreeRepository _familyTreeRepository;
         public UnitOfWork(AppDbContext dbContext,IUserRepository userRepository)
         {
             _dbContext = dbContext;
@@ -21,6 +22,7 @@ namespace Infrastructures
 
         public IUserRepository UserRepository => _userRepository;
         public IGroupRepository GroupRepository => _groupRepository;
+        public IFamilyTreeRepository FamilyTreeRepository => _familyTreeRepository;
 
         public Task<int> SaveChangeAsync()
         {

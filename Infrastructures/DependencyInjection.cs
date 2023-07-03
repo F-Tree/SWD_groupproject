@@ -21,6 +21,7 @@ namespace Infrastructures
             services.AddScoped<IUnitOfWork, UnitOfWork>(); 
             services.AddScoped<IUserRepository,UserRepository>();
             services.AddScoped<IGroupRepository, GroupRepository>();
+            services.AddScoped<IFamilyTreeRepository, FamilyTreeRepository>();
             services.AddDbContext<AppDbContext>(option => option.UseSqlServer(databaseConnection).EnableSensitiveDataLogging());
             return services;
         }

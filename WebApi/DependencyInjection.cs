@@ -13,6 +13,7 @@ namespace WebApi
         public static IServiceCollection AddWebApi(this IServiceCollection services,string secretKey)
         {
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IFamilyTreeService, FamilyTreeService>();
             services.AddScoped<IClaimService, ClaimService>();
             services.AddScoped<IGroupService, GroupService>();
             services.AddHttpContextAccessor();
