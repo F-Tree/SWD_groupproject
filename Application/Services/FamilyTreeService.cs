@@ -16,7 +16,7 @@ namespace Application.Services
         private readonly IClaimService _claimService;
         private readonly IConfiguration _configuration;
         private readonly ICurrentTime _currentTime;
-        public FamilyTreeService(IFamilyTreeRepository familyTreeRepository, IClaimService claimService, IUnitOfWork unitOfWork, ICurrentTime currentTime, IConfiguration configuration)
+        public FamilyTreeService(IClaimService claimService, IUnitOfWork unitOfWork, ICurrentTime currentTime, IConfiguration configuration)
         {
             _unitOfWork = unitOfWork;
             _claimService = claimService;

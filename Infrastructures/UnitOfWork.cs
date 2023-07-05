@@ -14,10 +14,11 @@ namespace Infrastructures
         private readonly IUserRepository _userRepository;
         private readonly IGroupRepository _groupRepository;
         private readonly IFamilyTreeRepository _familyTreeRepository;
-        public UnitOfWork(AppDbContext dbContext,IUserRepository userRepository)
+        public UnitOfWork(AppDbContext dbContext,IUserRepository userRepository, IFamilyTreeRepository familyTreeRepository)
         {
             _dbContext = dbContext;
             _userRepository = userRepository;
+            _familyTreeRepository = familyTreeRepository;
         }
 
         public IUserRepository UserRepository => _userRepository;

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers
 {
-    public class FamilyTreeController : Controller
+    public class FamilyTreeController : MainController
     {
         private readonly IFamilyTreeService _familyTreeService;
         public FamilyTreeController(IFamilyTreeService familyTreeService)
