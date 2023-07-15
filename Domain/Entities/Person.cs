@@ -9,18 +9,18 @@ namespace Domain.Entities
 {
     public class Person : BaseEntity
     {       
-        public string? Name { get; set; }
+        public string Name { get; set; }
         public string Gender { get; set; }
         public string Status { get; set; } // Alive, Deceased, ...
         public DateTime? DateOfBirth { get; set; }
         public DateTime? DateOfDeath { get; set; }
-        public string BirthPlace { get; set; }
+        public string? BirthPlace { get; set; }
         public string? RestingPlace { get; set; }
-        public string? Father { get; set; }
-        public string? Mother { get; set; }
-        public string? Spouse { get; set; }
-        public string? Children { get; set; }
-
+        public Guid? Father { get; set; }
+        public Guid? Mother { get; set; }
+        public Guid? Spouse { get; set; }
+        public Guid? Children { get; set; }
+        public Guid? FamilyTreeId { get; set; }
         public FamilyTree FamilyTree { get; set; }
     }
 }

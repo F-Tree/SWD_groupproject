@@ -14,9 +14,11 @@ namespace Domain.Entities
         public string Password { get; set; }
         public string? Name { get; set; }    
         public int RoleId { get; set; } 
+        public string? RefreshToken { get; set; }
+        public string? AccessToken { get; set; }
         public string? PhoneNumber { get; set; }
         public Role Role { get; set; }
-
+        public Guid? FamilyGroupId { get; set; }
         public FamilyGroup FamilyGroup { get; set; }
     }
 }

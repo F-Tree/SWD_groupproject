@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Application.InterfaceRepository
 {
-    public  interface IGroupRepository : IGenericRepository<GroupChatEntity>
+    public  interface IGroupRepository : IGenericRepository<FamilyGroup>
     {
         Task<bool> CheckGroupName(string groupName);
     }

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructures.Repository
 {
-    public class GroupRepository : GenericRepository<GroupChatEntity>, IGroupRepository
+    public class GroupRepository : GenericRepository<FamilyGroup>, IGroupRepository
     {
         private readonly AppDbContext _appDbContext;
         private readonly IClaimService _claimService;

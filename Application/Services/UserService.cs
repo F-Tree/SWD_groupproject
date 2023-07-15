@@ -49,6 +49,10 @@ namespace Application.Services
             var refreshToken = RefreshTokenString.GetRefreshToken();
             var accessToken = user.GenerateJsonWebToken(_configuration.GetSection("AppSetting:Token").Value!, _currentTime.GetCurrentTime());
             var expireRefreshTokenTime = DateTime.Now.AddHours(24);
+            user.RefreshToken = refreshToken;
+            user.AccessToken = accessToken;
+            _userRepository.Update(user);
+           await _unitOfWork.SaveChangeAsync();
          return   new Token
             {
                 emai = user.Email,

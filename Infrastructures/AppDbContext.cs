@@ -20,7 +20,7 @@ namespace Infrastructures
         public DbSet<Role> Role { get; set; }
         public DbSet<Person> Person { get; set; }
         public DbSet<FamilyTree> FamilyTree { get; set; }
-        public DbSet<GroupChatEntity> GroupChat { get; set; }
+        public DbSet<FamilyGroup> GroupChat { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

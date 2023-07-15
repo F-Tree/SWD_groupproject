@@ -9,6 +9,9 @@ namespace Domain.Entities
 {
     public class FamilyGroup : BaseEntity
     {
-        public ICollection<User> Users { get; set; }
+		public string GroupName { get; set; }
+		public string GroupDescription { get; set; }
+		public ICollection<User> Users { get; set; }
+		public ICollection<Message> Messages { get; set; }	
     }
 }
