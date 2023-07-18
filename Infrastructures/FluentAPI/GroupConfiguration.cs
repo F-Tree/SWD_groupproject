@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace Infrastructures.FluentAPI
 {
-    public class GroupConfiguration : IEntityTypeConfiguration<GroupChatEntity>
+    public class GroupConfiguration : IEntityTypeConfiguration<FamilyGroup>
     {
-        public void Configure(EntityTypeBuilder<GroupChatEntity> builder)
+        public void Configure(EntityTypeBuilder<FamilyGroup> builder)
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).HasDefaultValueSql("NEWID()");

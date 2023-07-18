@@ -22,9 +22,13 @@ namespace Infrastructures.FluentValidation
             builder.Property(x => x.RoleId);
             builder.HasOne(u => u.Role).WithMany(r => r.Users).HasForeignKey(u => u.RoleId);
             builder.HasIndex(u => u.Email).IsUnique();
+            builder.Property(u => u.AccessToken);
+            builder.Property(u => u.RefreshToken);
             builder.Property(x => x.Password).HasDefaultValueSql("null");
             builder.Property(x => x.PhoneNumber).HasMaxLength(15);
             builder.Navigation(u => u.Role).AutoInclude();
+            builder.HasOne(x => x.FamilyGroup).WithMany(fg => fg.Users).HasForeignKey(x => x.FamilyGroupId);
+            builder.Property(x => x.FamilyGroupId).IsRequired(false);
         }
     }
 }

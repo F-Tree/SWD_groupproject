@@ -8,8 +8,8 @@ namespace Domain.Entities
 {
     public class Message : BaseEntity
     {
-        public string Text { get; set; }
+        public string Content { get; set; }
         public Guid? GroupId { get; set; }
-        public GroupChatEntity Group { get; set; }
+        public FamilyGroup Group { get; set; }
     }
 }

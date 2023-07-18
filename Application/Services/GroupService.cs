@@ -28,7 +28,7 @@ namespace Application.Services
                 throw new Exception("Group existed!");
             }
 
-            GroupChatEntity newGroup = new GroupChatEntity
+            FamilyGroup newGroup = new FamilyGroup
             {
                 GroupName = groupName,
                 GroupDescription = groupDesc,
