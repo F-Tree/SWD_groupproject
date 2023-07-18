@@ -23,6 +23,7 @@ namespace Infrastructures
             services.AddScoped<IUnitOfWork, UnitOfWork>(); 
             services.AddScoped<IUserRepository,UserRepository>();
             services.AddScoped<IGroupRepository, GroupRepository>();
+            services.AddScoped<IFamilyTreeRepository,FaminlyTreeRepository>();
             services.AddDbContext<AppDbContext>(option => option.UseSqlServer(databaseConnection).EnableSensitiveDataLogging());
             services.AddAutoMapper(typeof(MapperConfigurationProfile).Assembly);
             return services;

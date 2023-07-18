@@ -8,6 +8,7 @@ namespace Domain.Entities
 {
     public class FamilyTree : BaseEntity
     {
+        public string TreeName { get; set; }
         public ICollection<Person> Persons { get; set; }
     }
 }
