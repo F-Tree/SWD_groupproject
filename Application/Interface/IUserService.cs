@@ -16,5 +16,6 @@ namespace Application.Interface
         Task<bool> RegisterAsync(string username,string password);
         Task<Token> LoginAsync(string username,string password);
         public Task<bool> UpdateUserInformation(UpdateDTO updateUser);
+        Task<bool> ChangePassword(string oldPassword,string newPassword);   
     }
 }

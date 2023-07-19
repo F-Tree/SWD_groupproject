@@ -35,7 +35,22 @@ namespace Application.Services
             _claimService = claimService;
         }
 
-        public async Task<List<User>> GetAllUser()
+		public async Task<bool> ChangePassword(string oldPassword, string newPassword)
+		{
+            var user = await _userRepository.CheckAuthentcationUser();
+            if(user == null)
+            {
+                throw new Exception("You need to login to do this action");
+            }
+            if (!oldPassword.CheckPassword(user.Password))
+            {
+                throw new Exception("Password is incorrect");
+            }
+            var result= await _userRepository.ChangeUserPasswordAsync( user, newPassword);
+            return result;
+		}
+
+		public async Task<List<User>> GetAllUser()
         {
             List<User> users = new List<User>();    
             users= await _userRepository.GetAllAsync();

@@ -9,5 +9,6 @@ namespace Application.Interface
     public interface IGroupService
     {
         Task<bool> CreateGroupAsync(string groupName, string groupDesc);
+        Task<bool> DeleteGroupAsync(Guid groupId);
     }
 }
