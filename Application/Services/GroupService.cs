@@ -13,7 +13,6 @@ namespace Application.Services
     {
         private readonly IGroupRepository _groupRepository;
         private readonly IUnitOfWork _unitOfWork;
-
         public GroupService(IGroupRepository groupRepository, IUnitOfWork unitOfWork)
         {
             _groupRepository = groupRepository;
@@ -32,6 +31,7 @@ namespace Application.Services
             {
                 GroupName = groupName,
                 GroupDescription = groupDesc,
+                
             };
             await _groupRepository.AddAsync(newGroup);
             return await _unitOfWork.SaveChangeAsync() > 0;

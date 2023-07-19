@@ -9,6 +9,6 @@ namespace Application.Interface
 {
 	public  interface ITreeService
 	{
-		Task<FamilyTree> SearchFamilyTreeByName(string name);
+		Task<List<FamilyTree>> SearchFamilyTreeByName(string name);
 	}
 }
