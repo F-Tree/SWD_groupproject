@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace Infrastructures.Repository
 {
-	public class FaminlyTreeRepository : GenericRepository<FamilyTree>, IFamilyTreeRepository
+	public class FamilyTreeRepository : GenericRepository<FamilyTree>, IFamilyTreeRepository
 	{
 		private AppDbContext _dbContext;
-		public FaminlyTreeRepository(AppDbContext dbContext, ICurrentTime timeService, IClaimService claimsService) : base(dbContext, timeService, claimsService)
+		public FamilyTreeRepository(AppDbContext dbContext, ICurrentTime timeService, IClaimService claimsService) : base(dbContext, timeService, claimsService)
 		{
 			_dbContext= dbContext;
 		}

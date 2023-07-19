@@ -7,6 +7,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Security.Claims;
 using Application.ViewModel;
+using Application.ViewModel.UserViewModel;
 
 namespace Application.Interface
 {
@@ -14,5 +15,6 @@ namespace Application.Interface
     {
         Task<bool> RegisterAsync(string username,string password);
         Task<Token> LoginAsync(string username,string password);
+        public Task<bool> UpdateUserInformation(UpdateDTO updateUser);
     }
 }

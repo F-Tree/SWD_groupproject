@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Interface
+namespace Application.InterfaceRepository
 {
-	public interface ITreeService
-	{
-		Task<List<FamilyTree>> SearchFamilyTreeByName(string name);
-	}
+    public interface IPersonRepository : IGenericRepository<Person>
+    {
+
+    }
 }
