@@ -41,13 +41,9 @@ namespace WebApi.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateUser(UpdateDTO updateObject)
         {
-            if (_claimService.GetCurrentUserId.Equals(updateObject.UserId))
-            {
-                var result = await _userService.UpdateUserInformation(updateObject);
-                if (result) return NoContent();
-                else return BadRequest("Something went wrong");
-            }
-            else return BadRequest("Can not update different account");
+            var result = await _userService.UpdateUserInformation(updateObject);
+            if (result) return Ok();
+            else return BadRequest("Something went wrong");
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Application.Common;
+using Application.ViewModel.PersonViewModel;
 using Application.ViewModel.UserViewModel;
 using AutoMapper;
 using Domain.Entities;
@@ -13,10 +14,20 @@ namespace Infrastructures.Mapper
     public  class MapperConfigurationProfile:Profile
     {
        public MapperConfigurationProfile() 
-        {
+       {
             CreateMap(typeof(Pagination<>), typeof(Pagination<>));
+
             CreateMap<UpdateDTO, User>()
-                .ForMember(x => x.Id, opt => opt.MapFrom(src => src.UserId))
+                .ForMember(x => x.Name, opt => opt.MapFrom(src => src.UserName))
+                .ForMember(x => x.PhoneNumber, opt => opt.MapFrom(src => src.PhoneNumber))
+                .ReverseMap();
+
+            CreateMap<UpdatePersonDTO, Person>()
+                .ForMember(x => x.Name, opt => opt.MapFrom(src => src.Name))
+                .ForMember(x => x.Gender, opt => opt.MapFrom(src => src.Gender))
+                .ForMember(x => x.Status, opt => opt.MapFrom(src => src.Status))
+                .ForMember(x => x.DateOfDeath, opt => opt.MapFrom(src => src.DateOfDeath))
+                .ForMember(x => x.RestingPlace, opt => opt.MapFrom(src => src.RestingPlace))
                 .ReverseMap();
         }
     }

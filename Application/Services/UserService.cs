@@ -23,14 +23,16 @@ namespace Application.Services
         private readonly IConfiguration _configuration;
         private readonly ICurrentTime _currentTime;
         private readonly IMapper _mapper;
+        private readonly IClaimService _claimService;
 
-        public UserService(IUserRepository userRepository, IUnitOfWork unitOfWork, ICurrentTime currentTime, IConfiguration configuration, IMapper mapper)
+        public UserService(IUserRepository userRepository, IUnitOfWork unitOfWork, ICurrentTime currentTime, IConfiguration configuration, IMapper mapper, IClaimService claimService)
         {
             _userRepository = userRepository;
             _unitOfWork = unitOfWork;
             _currentTime = currentTime;
             _configuration = configuration;
             _mapper = mapper;
+            _claimService = claimService;
         }
 
         public async Task<List<User>> GetAllUser()
@@ -58,8 +60,8 @@ namespace Application.Services
             user.RefreshToken = refreshToken;
             user.AccessToken = accessToken;
             _userRepository.Update(user);
-           await _unitOfWork.SaveChangeAsync();
-         return   new Token
+            await _unitOfWork.SaveChangeAsync();
+            return   new Token
             {
                 emai = user.Email,
                 accessToken = accessToken,
@@ -89,9 +91,8 @@ namespace Application.Services
         public async Task<bool> UpdateUserInformation(UpdateDTO updateUser)
         {
             if (updateUser != null)
-            {
-
-                User user = (await _unitOfWork.UserRepository.GetByIdAsync(updateUser.UserId))!;
+            {              
+                User user = (await _unitOfWork.UserRepository.GetByIdAsync(_claimService.GetCurrentUserId))!;
                 _ = _mapper.Map(updateUser, user, typeof(UpdateDTO), typeof(User));
 
                 _unitOfWork.UserRepository.Update(user);

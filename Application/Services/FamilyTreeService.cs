@@ -16,7 +16,7 @@ namespace Application.Services
 		{
 			_familyTreeRepository = familyTreeRepository;
 		}
-		public async Task<FamilyTree> SearchFamilyTreeByName(string name)
+		public async Task<List<FamilyTree>> SearchFamilyTreeByName(string name)
 		{
 			return await _familyTreeRepository.SearchFamilyTree(name);
 		}
