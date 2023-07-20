@@ -96,7 +96,7 @@ namespace Application.Services
             {
                 Email = username,
                 Password = password.Hash(),
-                RoleId=3
+                RoleId=2
             };
             await _userRepository.AddAsync(newUser);
             return await _unitOfWork.SaveChangeAsync() > 0;
