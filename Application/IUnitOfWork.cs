@@ -9,6 +9,7 @@ namespace Application
 {
     public  interface IUnitOfWork
     {
+        public IFamilyTreeRepository FamilyTreeRepository { get; }
         public IUserRepository UserRepository { get; }
         public Task<int> SaveChangeAsync();
     }
