@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Domain.Enum
 {
-    public enum RoleEnum
-    {
-		SystemAdmin,
-        SystemMember
-    }
+	public enum GroupRoleEnum
+	{
+		FamilyAdmin,
+		FamilyMember
+	}
 }

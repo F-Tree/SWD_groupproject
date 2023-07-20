@@ -25,8 +25,6 @@ namespace Infrastructures.FluentValidation
             builder.Property(x => x.Password).HasDefaultValueSql("null");
             builder.Property(x => x.PhoneNumber).HasMaxLength(15);
             builder.Navigation(u => u.Role).AutoInclude();
-            builder.HasOne(x => x.FamilyGroup).WithMany(fg => fg.Users).HasForeignKey(x => x.FamilyGroupId);
-            builder.Property(x => x.FamilyGroupId).IsRequired(false);
         }
     }
 }

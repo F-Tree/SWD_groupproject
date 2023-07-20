@@ -21,8 +21,9 @@ namespace Infrastructures
         public DbSet<Person> Person { get; set; }
         public DbSet<FamilyTree> FamilyTree { get; set; }
         public DbSet<FamilyGroup> GroupChat { get; set; }
-        public DbSet<TreeRelationship> TreeRelationship { get; set; }
         public DbSet<Message> Message { get; set; }
+        public DbSet<GroupRole> GroupRole { get; set; }
+        public DbSet<UserInGroup> UserInGroup { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());

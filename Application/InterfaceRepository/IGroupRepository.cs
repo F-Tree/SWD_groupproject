@@ -10,5 +10,6 @@ namespace Application.InterfaceRepository
     public  interface IGroupRepository : IGenericRepository<FamilyGroup>
     {
         Task<bool> CheckGroupName(string groupName);
+        Task<bool> SoftRemoveV2(Guid groupId);
     }
 }

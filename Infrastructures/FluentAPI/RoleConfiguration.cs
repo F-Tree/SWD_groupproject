@@ -18,16 +18,11 @@ namespace Infrastructures.FluentAPI
                 new Role
                 {
                     RoleId= 1,
-                    RoleName=nameof(RoleEnum.FamilyAdmin),
+                    RoleName=nameof(RoleEnum.SystemAdmin),
                 },
                 new Role
                 {
                     RoleId= 2,
-                    RoleName= nameof(RoleEnum.FamilyMember),
-                },
-                new Role
-                {
-                    RoleId= 3,
                     RoleName = nameof(RoleEnum.SystemMember)
                 }
 

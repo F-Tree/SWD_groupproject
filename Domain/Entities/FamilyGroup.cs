@@ -11,7 +11,8 @@ namespace Domain.Entities
     {
 		public string GroupName { get; set; }
 		public string GroupDescription { get; set; }
-		public ICollection<User> Users { get; set; }
+		public int MemberAmount { get; set; }
 		public ICollection<Message> Messages { get; set; }	
+		public ICollection<UserInGroup> UserInGroups { get; set; }
     }
 }

@@ -10,6 +10,10 @@ namespace Application
     public  interface IUnitOfWork
     {
         public IUserRepository UserRepository { get; }
+        public IGroupRepository GroupRepository { get; }
+        public IPersonRepository PersonRepository { get; }
+        public IFamilyTreeRepository FamilyTreeRepository { get; }
+        public IUserInGroupRepository UserInGroupRepository { get; }
         public Task<int> SaveChangeAsync();
     }
 }

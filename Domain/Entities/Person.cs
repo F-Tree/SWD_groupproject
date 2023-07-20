@@ -22,7 +22,5 @@ namespace Domain.Entities
         public Guid? Children { get; set; }
         public Guid? FamilyTreeId { get; set; }
         public FamilyTree FamilyTree { get; set; }
-        public ICollection<TreeRelationship> TreeRelationshipOne { get; set; }
-        public ICollection<TreeRelationship> TreeRelationshipTwo { get; set; }  
     }
 }

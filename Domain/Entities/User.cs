@@ -20,8 +20,7 @@ namespace Domain.Entities
         public string? AccessToken { get; set; }
         public string? PhoneNumber { get; set; }
         public Role Role { get; set; }
-        [ForeignKey("FamilyGroup")]
-        public Guid? FamilyGroupId { get; set; }
-        public FamilyGroup FamilyGroup { get; set; }
+        public Guid? UserInGroupId { get; set; }
+        public ICollection<UserInGroup> UserInGroups { get; set; }
     }
 }

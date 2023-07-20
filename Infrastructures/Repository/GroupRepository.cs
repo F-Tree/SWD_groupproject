@@ -26,5 +26,24 @@ namespace Infrastructures.Repository
         {
             return await _appDbContext.GroupChat.AnyAsync(u => u.GroupName == groupName);
         }
-    }
+
+		public async Task<bool> SoftRemoveV2(Guid groupId)
+		{
+            var group =await GetByIdAsync(groupId);
+            if (group == null) 
+            {
+                throw new Exception("Group not existed");
+            }
+            if (group.IsDeleted)
+            {
+                throw new Exception("Group already deleted");
+            }
+            if (_claimService.GetCurrentUserId == group.CreatedBy)
+            {
+               group.IsDeleted= true;
+                Update(group);
+            }
+           return _appDbContext.SaveChanges()>0;
+		}
+	}
 }

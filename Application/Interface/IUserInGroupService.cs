@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Enum
+namespace Application.Interface
 {
-    public enum RoleEnum
-    {
-		SystemAdmin,
-        SystemMember
-    }
+	public  interface IUserInGroupService
+	{
+		
+	}
 }
