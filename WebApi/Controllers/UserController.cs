@@ -36,6 +36,16 @@ namespace WebApi.Controllers
             }
             return Ok(token);
         }
+        [HttpGet]
+        public async Task<IActionResult> RefreshToken(string accessToken,string refreshToken)
+        {
+            var token =await _userService.RefreshToken(accessToken,refreshToken);
+            if (token == null)
+            {
+                return BadRequest("Cannot get new token");
+            }
+            return Ok(token);
+        }
 
         [HttpPut]
         public async Task<IActionResult> UpdateUser(UpdateDTO updateObject)

@@ -18,6 +18,7 @@ namespace Domain.Entities
         public int? RoleId { get; set; } 
         public string? RefreshToken { get; set; }
         public string? AccessToken { get; set; }
+        public DateTime? ExpireTokenTime { get; set; }
         public string? PhoneNumber { get; set; }
         public Role Role { get; set; }
         public Guid? UserInGroupId { get; set; }
