@@ -11,5 +11,7 @@ namespace Application.Interface
 	{
 		Task<bool> CreateFamilyTree(string treeName);
 		Task<List<FamilyTree>> SearchFamilyTreeByName(string name);
-	}
+		public Task<bool> SoftRemoveFamilyTreeAsync(string familyTreeId);
+		public Task<FamilyTree> GetFamilyTreeByIdAsync(string familyTreeId);
+    }
 }

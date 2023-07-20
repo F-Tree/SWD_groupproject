@@ -1,5 +1,6 @@
 ﻿using Application.Interface;
 using Application.InterfaceRepository;
+using AutoMapper;
 using Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -15,12 +16,14 @@ namespace Application.Services
         private readonly IUnitOfWork _unitOfWork;
         private readonly IClaimService _claimService;
         private readonly ICurrentTime _currentTime;
-        public FamilyTreeService (IFamilyTreeRepository familyTreeRepository, IUnitOfWork unitOfWork, IClaimService claimService, ICurrentTime currentTime)
+        private readonly IMapper _mapper;
+        public FamilyTreeService (IFamilyTreeRepository familyTreeRepository, IUnitOfWork unitOfWork, IClaimService claimService, ICurrentTime currentTime, IMapper mapper)
 		{
 			_familyTreeRepository = familyTreeRepository;
 			_unitOfWork = unitOfWork;
 			_claimService = claimService;
 			_currentTime = currentTime;
+            _mapper = mapper;
 		}
 
         public async Task<bool> CreateFamilyTree(string treeName)
@@ -42,5 +45,27 @@ namespace Application.Services
 		{
 			return await _familyTreeRepository.SearchFamilyTree(name);
 		}
-	}
+
+        public async Task<bool> SoftRemoveFamilyTreeAsync(string familyTreeId)
+        {
+            var familyTreeObj = await GetFamilyTreeByIdAsync(familyTreeId);
+
+            _familyTreeRepository.SoftRemove(familyTreeObj);
+            return (await _unitOfWork.SaveChangeAsync() > 0);
+        }
+
+        public async Task<FamilyTree> GetFamilyTreeByIdAsync(string familyTreeId)
+        {
+            try
+            {
+                var _familyTreeId = _mapper.Map<Guid>(familyTreeId);
+                var familyTreeObj = await _familyTreeRepository.GetByIdAsync(_familyTreeId);
+                return familyTreeObj ?? throw new NullReferenceException($"Incorrect Id: The person with id: {familyTreeId} doesn't exist or has been deleted!");
+            }
+            catch (AutoMapperMappingException)
+            {
+                throw new AutoMapperMappingException("Incorrect Id!");
+            }
+        }
+    }
 }

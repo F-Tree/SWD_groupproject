@@ -1,4 +1,5 @@
-﻿using Application.InterfaceRepository;
+﻿using Application.Interface;
+using Application.InterfaceRepository;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,17 +10,19 @@ using System.Threading.Tasks;
 
 namespace Infrastructures.Repository
 {
-	public class UserInGroupRepository : IUserInGroupRepository
+	public class UserInGroupRepository : GenericRepository<UserInGroup>, IUserInGroupRepository
 	{
-		private readonly AppDbContext _appDbContext;
-		public UserInGroupRepository(AppDbContext appDbContext)
+		private readonly AppDbContext _dbContext;
+
+		public UserInGroupRepository(AppDbContext dbContext, ICurrentTime timeService, IClaimService claimService) : base(dbContext, timeService, claimService)
 		{
-			_appDbContext = appDbContext;
+			_dbContext = dbContext;
 		}
+			
 		public  async Task<bool> CheckUserIsInGroup(Guid id)
 		{
 			bool isExisted = false;
-			var userInGroup =await _appDbContext.UserInGroup.SingleOrDefaultAsync(x=>x.UserId==id);
+			var userInGroup =await _dbContext.UserInGroup.SingleOrDefaultAsync(x=>x.UserId==id);
 			if (userInGroup != null)
 			{
 				isExisted = true;
@@ -42,7 +45,7 @@ namespace Infrastructures.Repository
 				isBanned= false,
 				GroupRoleId=1
 			};
-			_appDbContext.UserInGroup.Add(userInGroup);
+			_dbContext.UserInGroup.Add(userInGroup);
 
 		}
 	}
