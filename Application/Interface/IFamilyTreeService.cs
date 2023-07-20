@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace Application.Interface
 {
-	public interface ITreeService
+	public interface IFamilyTreeService
 	{
+		Task<bool> CreateFamilyTree(string treeName);
 		Task<List<FamilyTree>> SearchFamilyTreeByName(string name);
 	}
 }
