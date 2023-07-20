@@ -45,6 +45,26 @@ namespace Application.Services
             throw new Exception("Person can not be null");
         }
 
+        public async Task<Person> GetPersonByIdAsync(string personId)
+        {
+            try
+            {
+                var _personId = _mapper.Map<Guid>(personId);
+                var personObj = await _personRepository.GetByIdAsync(_personId);
+                return personObj ?? throw new NullReferenceException($"Incorrect Id: The person with id: {personId} doesn't exist or has been deleted!");
+            }
+            catch (AutoMapperMappingException)
+            {
+                throw new AutoMapperMappingException("Incorrect Id!");
+            }
+        }
 
+        public async Task<bool> SoftRemovePersonAsync(string personId)
+        {
+            var personObj = await GetPersonByIdAsync(personId);
+
+            _personRepository.SoftRemove(personObj);
+            return (await _unitOfWork.SaveChangeAsync() > 0);
+        }
     }
 }
