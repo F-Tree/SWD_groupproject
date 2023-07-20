@@ -5,14 +5,24 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers
 {
-	[Route("api/[controller]")]
 	[ApiController]
 	public class FamilyTreeController : MainController
 	{
-		private readonly ITreeService _treeService;
-		public FamilyTreeController (ITreeService treeService)
+		private readonly IFamilyTreeService _treeService;
+		public FamilyTreeController (IFamilyTreeService treeService)
 		{
 			_treeService = treeService;
+		}
+		[Authorize]
+		[HttpPost]
+		public async Task<IActionResult> CreateFamilyTree(string treeName)
+		{
+			var isSucceed = await _treeService.CreateFamilyTree(treeName);
+			if (!isSucceed)
+			{
+				return BadRequest("Create tree fail!");
+			}
+			return Ok("Create tree succeed!");
 		}
 		[Authorize]
 		[HttpGet]
