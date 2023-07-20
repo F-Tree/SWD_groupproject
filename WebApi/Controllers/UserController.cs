@@ -8,12 +8,10 @@ namespace WebApi.Controllers
     public class UserController : MainController
     {
         private readonly IUserService _userService;
-        private readonly IClaimService _claimService;
 
-        public UserController(IUserService userService, IClaimService claimService)
+        public UserController(IUserService userService)
         {
             _userService = userService;
-            _claimService = claimService;
         }
 
         [HttpPost]
