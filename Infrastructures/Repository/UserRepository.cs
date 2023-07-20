@@ -37,6 +37,15 @@ namespace Infrastructures.Repository
         {
             return await _appDbContext.User.FirstAsync(u => u.Email.Equals(email));
         }
-       
-    }
+       public async Task<User> CheckAuthentcationUser()
+        {
+          return   await _appDbContext.User.FindAsync(_claimService.GetCurrentUserId);
+        }
+		public async Task<bool> ChangeUserPasswordAsync(User user, string newPassword)
+		{
+			user.Password = newPassword.Hash();
+			Update(user);
+			return await _appDbContext.SaveChangesAsync() > 0;
+		}
+	}
 }

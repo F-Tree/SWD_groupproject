@@ -12,5 +12,9 @@ namespace Application.InterfaceRepository
         Task<bool> CheckPassword(string password);
         Task<bool> CheckEmail(string email);
         Task<User> FindUserByEmail(string email);
-    }
+        Task<User> CheckAuthentcationUser();
+        Task<bool> ChangeUserPasswordAsync(User user, string newPassword);
+
+
+	}
 }
