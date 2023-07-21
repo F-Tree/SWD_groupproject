@@ -26,6 +26,7 @@ namespace Infrastructures
             services.AddScoped<IFamilyTreeRepository, FamilyTreeRepository>();
             services.AddScoped<IPersonRepository, PersonRepository>();
             services.AddScoped<IUserInGroupRepository, UserInGroupRepository>();
+            services.AddScoped<IMessageRepository, MessageRepository>();
             services.AddDbContext<AppDbContext>(option => option.UseSqlServer(databaseConnection).EnableSensitiveDataLogging());
             services.AddAutoMapper(typeof(MapperConfigurationProfile).Assembly);
             return services;
