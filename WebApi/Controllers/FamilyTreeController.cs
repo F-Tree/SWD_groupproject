@@ -1,4 +1,5 @@
 ﻿using Application.Interface;
+using Application.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -35,5 +36,27 @@ namespace WebApi.Controllers
 			}
 			return Ok(tree);
 		}
-	}
+
+        [HttpDelete]
+        /*[Authorize]
+        [ClaimRequirement(nameof(PermissionItem.ClassPermission), nameof(PermissionEnum.Modifed))]*/
+        public async Task<IActionResult> SoftRemoveFamilyTree(string familyTreeId)
+        {
+            try
+            {
+                if (await _treeService.SoftRemoveFamilyTreeAsync(familyTreeId))
+                {
+                    return Ok("SoftRemove tree successfully");
+                }
+                else
+                {
+                    throw new Exception("Saving failed");
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("SoftRemove tree failed: " + ex.Message);
+            }
+        }
+    }
 }

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 namespace Domain.Entities
 {
-	public class UserInGroup:BaseEntity
+	public class UserInGroup : BaseEntity
 	{
 		public Guid? UserId { get; set; }
 		public Guid? GroupId { get; set; }
